@@ -394,6 +394,9 @@ const cs=v=>JSON.stringify(canon(v));
 const logId=x=>x.t+"_"+String(x.tb==null?0:x.tb).replace(/[^A-Za-z0-9_-]/g,"");
 /* ---- Firebase Realtime Database adapter (free Spark plan, no SDK) ---- */
 const CFGK="cafetabs.sync";
+/* Paste your Firebase details here once and every device syncs automatically: */
+const DEFAULT_SYNC={url:"",code:""};
+window.__hasDefaultSync=!!(DEFAULT_SYNC.url&&DEFAULT_SYNC.code);
 try{const m=/^#sync=(.+)$/.exec(location.hash);if(m){const c=JSON.parse(atob(decodeURIComponent(m[1])));if(c&&c.url&&c.code)localStorage.setItem(CFGK,JSON.stringify(c));history.replaceState(null,"",location.pathname+location.search)}}catch(e){}
 const rnd=()=>Array.from(crypto.getRandomValues(new Uint8Array(10)),x=>"abcdefghjkmnpqrstuvwxyz23456789"[x%31]).join("");
 function cfgSync(){
@@ -410,6 +413,7 @@ function cfgSync(){
  location.reload()}
 function makeFB(){
  let cfg=null;try{cfg=JSON.parse(localStorage.getItem(CFGK)||"null")}catch(e){}
+ if(!cfg||!cfg.url||!cfg.code)cfg=DEFAULT_SYNC;
  if(!cfg||!cfg.url||!cfg.code||typeof EventSource==="undefined")return null;
  const base=cfg.url.replace(/\/+$/,"")+"/cafes/"+encodeURIComponent(cfg.code);
  let tree={},loaded=false;const ls=[],pend={};
@@ -524,7 +528,7 @@ const sv=()=>{try{cur?sessionStorage.setItem(SK,JSON.stringify(cur)):sessionStor
 window.curW=()=>cur?cur.n:"";
 window.loginAs=o=>{cur=o;sv();check()};
 const staff=()=>S.staff||[];
-const syncOn=()=>{try{return !!localStorage.getItem("cafetabs.sync")}catch(e){return false}};
+const syncOn=()=>{if(window.__hasDefaultSync)return true;try{return !!localStorage.getItem("cafetabs.sync")}catch(e){return false}};
 const required=()=>staff().length>0||(syncOn()&&!window.__syncReady&&Date.now()-t0<6000);
 const ov=document.createElement("div");
 ov.style.cssText="position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:#fff;color:#2b2118;font:16px system-ui,sans-serif;padding:20px";
