@@ -138,70 +138,422 @@ button.t.paid small{color:#7a1c14}
 .map .pil.glass{border:1.5px solid rgba(110,175,215,.95);border-radius:3px;background:linear-gradient(20deg,transparent 0 20%,rgba(255,255,255,.8) 20% 28%,transparent 28% 40%,rgba(255,255,255,.6) 40% 45%,transparent 45% 56%,rgba(255,255,255,.7) 56% 64%,transparent 64%),linear-gradient(135deg,rgba(186,230,253,.65),rgba(224,242,254,.35));box-shadow:inset 0 0 0 2px rgba(255,255,255,.55),0 1px 3px rgba(16,24,40,.18);backdrop-filter:blur(1px)}
 
 .cr{text-align:center;margin:18px 0 4px;font-size:13px;color:var(--mut);letter-spacing:.02em}.cr b{color:var(--fg);font-weight:600}
+
+/* ---- polish: hover, amber category edge, item gradient ---- */
+@media (hover:hover){
+button:hover{box-shadow:0 2px 6px rgba(16,24,40,.12);background-color:#f7f8fa}
+button.p:hover{background:color-mix(in srgb,var(--acc),#fff 12%)}
+button.d:hover{background:#fdecea}
+button.t:hover{border-color:#8f98a5}
+button.t.open:hover{background:#dcf0e5}
+button.t.paid:hover{background:#fbdcd8}
+.cats button:hover{background:#dde1e6}
+.cats button.on:hover{background:var(--acc)}
+.items button:hover{filter:brightness(1.07)}
+}
+.cats button.on{box-shadow:inset 5px 0 0 #e8a33d,var(--sh)}
+.items button{background:linear-gradient(180deg,color-mix(in srgb,var(--k),#fff 14%),var(--k))}
+.items button.k1{color:#2b1a05;background:linear-gradient(180deg,#d39a4a,#bd8030)}
+.items button.k1 small{color:#2b1a05;opacity:.8}
+/* ---- multiple tabs per table ---- */
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 10px;padding:2px 2px 6px;-webkit-overflow-scrolling:touch}
+.tabs button{white-space:nowrap;flex:none;border-radius:999px;padding:6px 16px}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.tabs small{margin-left:6px;opacity:.8;font-variant-numeric:tabular-nums}
+/* ---- sales + backup ---- */
+.note{background:#eef6ff;border:1px solid #bcd7f0;color:#1f4d73;border-radius:10px;padding:10px 12px;margin:0 0 10px}
+textarea{font:13px/1.4 ui-monospace,Menlo,monospace;padding:10px;border:1px solid #cdd2d9;border-radius:8px;background:var(--card);color:var(--fg);width:100%;min-height:90px}
+textarea:focus{outline:2px solid #2f6c9a;outline-offset:1px}
+button:disabled{opacity:.4;cursor:default}
+.ord.full{max-height:none;overflow:visible}
+/* ---- item options ---- */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border-radius:999px;padding:6px 14px;min-height:40px}
+.chips button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.dlg h4{margin:16px 0 8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.pen{color:var(--mut);font-style:normal;font-size:13px}
+.det{display:block;color:var(--mut);font-size:13px;line-height:1.3}
+.ed input[type=checkbox]{flex:none;width:44px;min-height:44px;padding:0;accent-color:var(--acc)}
+/* ---- undo, move, time open ---- */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:10px;background:#1f2430;color:#fff;border-radius:12px;padding:6px 6px 6px 14px;box-shadow:0 8px 24px rgba(16,24,40,.3);z-index:6;animation:fi .15s ease}
+.toast span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast button{background:transparent;color:#ffd58a;border-color:rgba(255,255,255,.25);box-shadow:none;font-weight:600}
+.chips button.occ{border-color:#2e8b57;background:#e8f5ee;color:#14532d}
+.map .t small.el{font-size:clamp(6px,1.4cqw,11px);font-weight:700;opacity:.85}
+.map .t.late{box-shadow:0 0 0 3px #f59e0b,var(--sh)}
+/* ---- green back button ---- */
+header button[onclick="go('tables')"]{background:#2e8b57;color:#fff;border-color:#2e8b57;font-weight:600}
+header button[onclick="go('tables')"]:active{background:#25724a}
+@media (hover:hover){header button[onclick="go('tables')"]:hover{background:#277a4b}}
+/* ---- yellow paid button ---- */
+button[onclick="askClose(true)"]{background:#facc15;color:#2b1a05;border-color:#e0b300;font-weight:700}
+button[onclick="askClose(true)"]:active{background:#eab308}
+@media (hover:hover){button[onclick="askClose(true)"]:hover{background:#eab308}}
+/* ---- pay by item ---- */
+.dlg button[onclick="piPay()"]{background:#facc15;color:#2b1a05;border-color:#e0b300;font-weight:700}
+.dlg button[onclick="piPay()"]:disabled{background:#f3f4f6;color:#9ca3af;border-color:#e5e7eb;opacity:1}
+header{flex-wrap:wrap}button:disabled{opacity:.4;cursor:default}
+select{font:inherit;font-size:15px;padding:10px;border:1px solid #cdd2d9;border-radius:8px;background:var(--card);color:var(--fg);min-height:44px;min-width:0}
+.ed{flex-wrap:wrap}.ed .br{flex-basis:100%;height:0;order:4}.ed .cs,.ed .g{order:5;flex:1 1 30%}.ed .st{order:5;flex:0 0 auto;padding:4px 12px}
+.grid .t b{display:block;font-size:22px}.grid .t small{min-height:14px}.grid .t.late{box-shadow:0 0 0 3px #f59e0b,var(--sh)}
 </style></head><body><main id="app"></main>
 <script>
 const KEY="cafetabs.v1";
-const DM=[["Espresso Bar","Espresso:2;Double Espresso:2.5;Freddo Espresso:2.5;Freddo Cappuccino:3;Espresso & Tonic:4;Café Latte / Ice Latte:3.5;Macchiato / Cortado:2.5;Correto (Sambuca):4;Cappuccino:3;Double Cappuccino:3.5;Flat White:3;Double Flat White:3.5;Americano:2.5;Double Americano:3"],["Coffees","Caramel Macchiato:5;Ice Caramel Macchiato:5;Mocha / Ice Mocha:4.5;Frappe:2.5;Frappe with Ice Cream:6;Nescafe:2.5;Filter:2.5;Irish Coffee (Jameson):6;Jamaican Coffee (Dark Rum):6;Cafe Calypso (Kahlua):6;Cafe Amaretto (Disaronno):6;Lactose Free Milk:0.5;Caramel / Vanilla Syrup:0.5"],["Matcha Tea","Matcha Latte:4;Ice Matcha Latte:4;Strawberry Ice Matcha Latte:5"],["Beverages","Hot Tea / Ice Tea:2.5;Hot Chocolate:3.5;Ice Chocolate:3.5;Various Juices:2.5;Fresh Orange Juice:4;Coke / Sprite / Fanta:2.5;Schweppes Tonic / Soda:2.5;Monster / Red Bull:3;Sparkling Water:2.5;Wine (187ml):4.5;Prosecco (200ml):6.5;Alfa Beer 330ml:3.5;Alfa Beer 500ml:4.5;Mythos 500ml:4.5"],["Milkshakes","Vanilla Shake:6;Chocolate Shake:6;Strawberry Shake:6;Banana Shake:6;Mango Shake:6;Oreo Shake:6;Caramel Shake:6;Biscoff Shake:6;Bueno Shake:6;Mint & Choco Shake:6"],["Smoothies","#01 Berry Burst:6;#04 Strawberry Fantasy:6;#05 Coconut Crush:6;#07 Pineapple Sunset:6;#09 Acai Kick:6"]];
-const mkMenu=()=>DM.flatMap(([c,s])=>s.split(";").map(x=>{const i=x.lastIndexOf(":");return{c,n:x.slice(0,i),p:+x.slice(i+1)}}));
+const DM=[["Espresso Bar","Espresso:2;Double Espresso:2.5;Freddo Espresso:2.5;Freddo Cappuccino:3;Espresso & Tonic:4;Café Latte / Ice Latte:3.5;Macchiato / Cortado:2.5;Correto (Sambuca):4;Cappuccino:3;Double Cappuccino:3.5;Flat White:3;Double Flat White:3.5;Americano:2.5;Double Americano:3"],["Coffees","Caramel Macchiato:5;Ice Caramel Macchiato:5;Mocha / Ice Mocha:4.5;Frappe:2.5;Frappe with Ice Cream:6;Nescafe:2.5;Filter:2.5;Irish Coffee (Jameson):6;Jamaican Coffee (Dark Rum):6;Cafe Calypso (Kahlua):6;Cafe Amaretto (Disaronno):6;Lactose Free Milk:0.5;Caramel / Vanilla Syrup:0.5"],["Matcha Tea","Matcha Latte:4;Ice Matcha Latte:4;Strawberry Ice Matcha Latte:5"],["Beverages","Hot Tea / Ice Tea:2.5;Hot Chocolate:3.5;Ice Chocolate:3.5;Various Juices:2.5;Fresh Orange Juice:4;Coke / Sprite / Fanta:2.5;Schweppes Tonic / Soda:2.5;Monster / Red Bull:3;Sparkling Water:2.5;Wine (187ml):4.5;Prosecco (200ml):6.5;Alfa Beer 330ml:3.5;Alfa Beer 500ml:4.5;Mythos 500ml:4.5"],["Milkshakes","Vanilla Shake:6;Chocolate Shake:6;Strawberry Shake:6;Banana Shake:6;Mango Shake:6;Oreo Shake:6;Caramel Shake:6;Biscoff Shake:6;Bueno Shake:6;Mint & Choco Shake:6"],["Smoothies","#01 Berry Burst:6;#04 Strawberry Fantasy:6;#05 Coconut Crush:6;#07 Pineapple Sunset:6;#09 Acai Kick:6"],["Pastries","Filo Pastry Cheesepie:2;Cheesepie:2.5;Spinach Pie:2.5;Sausage-Roll Pie:2.5;Greek Custard Pie:2.5;Philadelphia:2.5;Ham & Cheese:3"]];
+const DG=["Εσπρέσο;Διπλός Εσπρέσο;Φρέντο Εσπρέσο;Φρέντο Καπουτσίνο;Εσπρέσο & Τόνικ;Καφέ Λατέ / Παγωμένο Λατέ;Μακιάτο / Κορτάδο;Κορρέτο (Σαμπούκα);Καπουτσίνο;Διπλός Καπουτσίνο;Φλατ Γουάιτ;Διπλό Φλατ Γουάιτ;Αμερικάνο;Διπλό Αμερικάνο","Καραμέλ Μακιάτο;Παγωμένο Καραμέλ Μακιάτο;Μόκα / Παγωμένη Μόκα;Φραπέ;Φραπέ με Παγωτό;Νεσκαφέ;Φίλτρου;Ιρλανδέζικος (Jameson);Τζαμάικα (Σκούρο Ρούμι);Καφέ Καλίψο (Kahlua);Καφέ Αμαρέτο (Disaronno);Γάλα Χωρίς Λακτόζη;Σιρόπι Καραμέλα / Βανίλια","Ματσά Λατέ;Παγωμένο Ματσά Λατέ;Παγωμένο Ματσά Λατέ Φράουλα","Τσάι Ζεστό / Παγωμένο;Ζεστή Σοκολάτα;Παγωμένη Σοκολάτα;Διάφοροι Χυμοί;Φρέσκος Χυμός Πορτοκάλι;Κόκα Κόλα / Sprite / Fanta;Schweppes Τόνικ / Σόδα;Monster / Red Bull;Ανθρακούχο Νερό;Κρασί (187ml);Prosecco (200ml);Μπύρα Alfa 330ml;Μπύρα Alfa 500ml;Μύθος 500ml","Μιλκσέικ Βανίλια;Μιλκσέικ Σοκολάτα;Μιλκσέικ Φράουλα;Μιλκσέικ Μπανάνα;Μιλκσέικ Μάνγκο;Μιλκσέικ Oreo;Μιλκσέικ Καραμέλα;Μιλκσέικ Biscoff;Μιλκσέικ Bueno;Μιλκσέικ Μέντα & Σοκολάτα",";;;;","Τυρόπιτα Φύλλο;Τυρόπιτα;Σπανακόπιτα;Λουκανικόπιτα;Μπουγάτσα με Κρέμα;Philadelphia;Ζαμπόν & Τυρί"];
+const mkMenu=()=>DM.flatMap(([c,s],k)=>s.split(";").map((x,j)=>{const i=x.lastIndexOf(":");return{c,n:x.slice(0,i),p:+x.slice(i+1),g:DG[k].split(";")[j]||""}}));
 let S={menu:mkMenu(),tabs:{},count:10,tax:0,cur:"€",mv:2};
 try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.menu){if(x.mv!==2){x.menu=mkMenu();x.cur="€";x.mv=2}S=x}}catch(e){}
+const GM={};mkMenu().forEach(i=>{if(i.g)GM[i.n]=i.g});S.menu.forEach(i=>{if(i.g===undefined&&GM[i.n])i.g=GM[i.n]});if(!S.pst){S.pst=1;if(!S.menu.some(i=>i.c==="Pastries"))mkMenu().filter(i=>i.c==="Pastries").forEach(i=>S.menu.push(i))}
 let view="tables",sel=null,cat=0;
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(window.syncKick)syncKick()};
 const $=s=>document.getElementById(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const KN=DM.map(d=>d[0]),ck=c=>{let i=KN.indexOf(c);if(i<0){i=0;for(const ch of c)i+=ch.charCodeAt(0)}return 'k'+(i%6)};
+const KN=DM.map(d=>d[0]),ck=c=>{const o=(S.cc||{})[c];if(o!=null)return 'k'+o;let i=KN.indexOf(c);if(i<0){i=0;for(const ch of c)i+=ch.charCodeAt(0)}return 'k'+(i%6)};
 const m=v=>S.cur+(Math.round(v*100)/100).toFixed(2);
 const sub=id=>(S.tabs[id]||[]).reduce((a,l)=>a+l.p*l.q,0);
-function go(v,id){cf=false;cc=false;view=v;sel=id;render()}
-function add(i){const it=S.menu[i],t=S.tabs[sel]=S.tabs[sel]||[];if(S.paid)delete S.paid[sel];const l=t.find(x=>x.n==it.n&&x.p==it.p);l?l.q++:t.push({n:it.n,p:it.p,q:1});save();render()}
-function chg(i,d){if(S.paid)delete S.paid[sel];const t=S.tabs[sel];t[i].q+=d;if(t[i].q<=0)t.splice(i,1);if(!t.length)delete S.tabs[sel];save();render()}
-function spl(d){S.splits=S.splits||{};S.splits[sel]=Math.max(1,Math.min(30,(S.splits[sel]||1)+d));save();render()}
-function splitUI(total){const n=(S.splits||{})[sel]||1,c=Math.round(total*100),b=Math.floor(c/n),r=c-b*n;let h=`<div class="row" style="margin-top:8px"><span class="n">Split between</span><button onclick="spl(-1)">−</button><b>${n}</b><button onclick="spl(1)">+</button></div>`;if(n>1){h+=`<div class="tot big" style="font-size:20px"><span>Each pays</span><span>${m(b/100)}</span></div>`;if(r)h+=`<div class="tot"><span>${r} ${r>1?'people pay':'person pays'} ${m((b+1)/100)} so it adds up</span></div>`}return h}
-const modal=(t,b,x)=>`<div class="ov" onclick="if(event.target===this){cf=false;cc=false;render()}"><div class="dlg" role="dialog" aria-modal="true"><h3>${t}</h3>${b}<div class="act">${x}</div></div></div>`;
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&(cf||cc)){cf=false;cc=false;render()}});
-let cf=false,cc=false;function askCloseTab(v){cc=v;render()}function askClose(v){cf=v;render()}function payTab(){cf=false;S.paid=S.paid||{};S.paid[sel]=true;save();render()}function closeTab(){if(!(S.paid||{})[sel])return;cf=false;cc=false;delete S.paid[sel];delete S.tabs[sel];if(S.splits)delete S.splits[sel];save();go("tables")}
+const tabKeys=t=>[String(t),...((S.tt||{})[t]||[]).map(x=>t+"#"+x.id)];
+const tabName=(t,k)=>(S.tnm||{})[k]||"Tab "+(tabKeys(t).indexOf(k)+1);
+const openKeys=t=>tabKeys(t).filter(k=>S.tabs[k]);
+let ct="";
+let msg="",rd=0,rtxt="",rsOk=false,clOk=false;
+let toast=null,tmr=0,mv=null,tm=false,pi=null,pn=null,qs="";
+const MILK=[{n:"Oat Milk",p:.5},{n:"Almond Milk",p:.5}],SUGAR=["No Sugar","Half Spoon","One Sugar","Medium","Medium-Sweet","Sweet","Very Sweet"].map(n=>({n}));
+const EXTRA=[{n:"Extra Shot",p:1},{n:"Whipped Cream",p:1}],xp=mi=>String(mi||"").split(", ").reduce((a,t)=>{const r=/^(\d+)× (.+)$/.exec(t),q=r?+r[1]:1,n=r?r[2]:t;return a+q*((MILK.concat(EXTRA).find(x=>x.n==n)||{p:0}).p)},0);
+const hasOpt=it=>it.opt!==undefined?!!it.opt:(["Espresso Bar","Coffees","Matcha Tea"].includes(it.c)&&!/Lactose|Syrup/.test(it.n));
+const detOf=l=>[l.mi,l.su?(l.su==="No Sugar"?l.su:"Sugar: "+l.su):"",l.k].filter(Boolean).join(", ");
+const ago=t=>{const m=Math.max(0,Math.floor((Date.now()-t)/60000));return m<1?"now":m<60?m+"m":Math.floor(m/60)+"h"+String(m%60).padStart(2,"0")};
+const note=()=>msg?`<div class="note">${esc(msg)}</div>`:"";
+function go(v,id){pn=null;qs="";cf=false;cc=false;rn=false;od=null;if(v==="report")rd=0;msg="";toast=null;clearTimeout(tmr);mv=null;tm=false;pi=null;rsOk=false;clOk=false;view=v;sel=id;ct=String(id);render()}
+function snapNow(){return JSON.stringify({tabs:S.tabs,paid:S.paid||{},splits:S.splits||{},tt:S.tt||{},tnm:S.tnm||{},since:S.since||{},sel:sel,ct:ct,ll:(S.log||[]).length})}
+function act(t,fn){const s=snapNow();fn();toast={t,s};clearTimeout(tmr);tmr=setTimeout(()=>{toast=null;const e=$("toast");if(e)e.remove()},7000);save();render()}
+function undo(){if(!toast)return;const x=JSON.parse(toast.s);S.tabs=x.tabs;S.paid=x.paid;S.splits=x.splits;S.tt=x.tt;S.tnm=x.tnm;S.since=x.since;sel=x.sel;ct=x.ct;if(x.ll!=null&&S.log&&S.log.length>x.ll)S.log.length=x.ll;toast=null;clearTimeout(tmr);if(!tabKeys(sel).includes(ct))ct=String(sel);save();render()}
+function piOpen(){cf=false;const t=S.tabs[ct]||[];pi={q:t.map(()=>0),n:""};render()}
+function piSet(i,d){const l=S.tabs[ct][i];pi.q[i]=Math.max(0,Math.min(l.q,pi.q[i]+d));render()}
+function piTog(i){const l=S.tabs[ct][i];pi.q[i]=pi.q[i]?0:l.q;render()}
+function piAll(){const t=S.tabs[ct],all=t.every((l,i)=>pi.q[i]>=l.q);t.forEach((l,i)=>pi.q[i]=all?0:l.q);render()}
+function piUI(){const t=S.tabs[ct]||[];let sb=0;t.forEach((l,i)=>sb+=l.p*pi.q[i]);const tx=sb*S.tax/100,all=t.every((l,i)=>pi.q[i]>=l.q);const b=`<p style="margin:0 0 6px;color:var(--mut)">Choose what this person is paying for.</p>`+t.map((l,i)=>`<div class="row"><span class="n" onclick="piTog(${i})" style="cursor:pointer">${esc(l.n)}${detOf(l)?`<small class="det">${esc(detOf(l))}</small>`:''}</span><button onclick="piSet(${i},-1)">−</button><b>${pi.q[i]}/${l.q}</b><button onclick="piSet(${i},1)">+</button><span style="width:70px;text-align:right">${m(l.p*pi.q[i])}</span></div>`).join("")+`<div class="row"><button onclick="piAll()" style="flex:1">${all?'Clear selection':'Select all'}</button></div>`+(S.tax&&sb?`<div class="tot"><span>Subtotal</span><span>${m(sb)}</span></div><div class="tot"><span>Tax ${S.tax}%</span><span>${m(tx)}</span></div>`:'')+`<div class="tot big"><span>To pay</span><span>${m(sb+tx)}</span></div><input maxlength="20" style="width:100%;margin-top:10px" placeholder="Name (optional)" value="${esc(pi.n)}" oninput="pi.n=this.value">`;return modal("Pay by item",b,`<button onclick="pi=null;render()">Cancel</button><button ${sb?'':'disabled'} onclick="piPay()">Pay selected</button>`)}
+function piPay(){const t=S.tabs[ct];if(!t||!pi)return;const picked=[];let sb=0;t.forEach((l,i)=>{const q=pi.q[i]||0;if(q>0){picked.push({l,q});sb+=l.p*q}});if(!picked.length)return;const tx=sb*S.tax/100,nm=(pi.n||"").trim().slice(0,20)||(tabKeys(sel).length>1?tabName(sel,ct):""),full=t.every((l,i)=>(pi.q[i]||0)>=l.q);const fn=()=>{(S.log=S.log||[]).push({t:Date.now(),w:(window.curW?curW():""),tb:sel,nm,sb,tx,tt:sb+tx,l:picked.map(({l,q})=>({n:l.n,p:l.p,q,mi:l.mi||"",su:l.su||"",k:l.k||"",c:(S.menu.find(i=>i.n==l.n)||{}).c||""}))});picked.forEach(({l,q})=>{l.q-=q});S.tabs[ct]=t.filter(l=>l.q>0);pi=null};if(!full){act("Paid "+m(sb+tx)+(nm?" for "+nm:""),fn);return}fn();delete S.tabs[ct];if(S.paid)delete S.paid[ct];if(S.splits)delete S.splits[ct];toast=null;if(ct!==String(sel)){S.tt[sel]=S.tt[sel].filter(x=>sel+"#"+x.id!==ct);if(S.tnm)delete S.tnm[ct]}const r=openKeys(sel);if(r.length){ct=r[0];save();render()}else{if(S.since)delete S.since[sel];if(S.tnm)tabKeys(sel).forEach(k=>delete S.tnm[k]);if(S.tt)delete S.tt[sel];save();go("tables")}}
+function openMove(){const l=S.tabs[ct][od.li];mv={li:od.li,one:l.q>1,tb:null};od=null;render()}
+function mvTb(n){if(!openKeys(n).length)doMove(String(n),n);else{mv.tb=n;render()}}
+function doMove(dest,ta){const src=ct,li=mv.li,l=S.tabs[src][li],n=mv.one&&l.q>1?1:l.q,tbl=ta!=null?ta:mv.tb!=null?mv.tb:sel;const lab=tbl==sel?(dest==="new"?"a new tab":tabName(sel,dest)):"table "+tbl;act("Moved "+(n>1?n+"× ":"")+l.n+" to "+lab,()=>{const wasOpen=openKeys(tbl).length;let key=dest;if(dest==="new"){S.tt=S.tt||{};const a=S.tt[tbl]=S.tt[tbl]||[];const id=a.reduce((m,x)=>Math.max(m,x.id),0)+1;a.push({id});key=tbl+"#"+id}const t=S.tabs[key]=S.tabs[key]||[],f=t.find(x=>x.n==l.n&&x.p==l.p&&(x.mi||"")==(l.mi||"")&&(x.su||"")==(l.su||"")&&(x.k||"")==(l.k||""));f?f.q+=n:t.push({...l,q:n});l.q-=n;if(l.q<=0)S.tabs[src].splice(li,1);if(!S.tabs[src].length)delete S.tabs[src];if(S.paid){delete S.paid[src];delete S.paid[key]}if(tbl!=sel&&!wasOpen){S.since=S.since||{};S.since[tbl]=S.since[sel]||Date.now()}mv=null})}
+function doTable(dest){const src=sel;act("Moved table "+src+" to table "+dest,()=>{const ks=openKeys(src),wasOpen=openKeys(dest).length,s0=(S.since||{})[src],nks=[];ks.forEach(k=>{let nk;if(!S.tabs[String(dest)]&&!nks.length){nk=String(dest)}else{S.tt=S.tt||{};const a=S.tt[dest]=S.tt[dest]||[];const id=a.reduce((m,x)=>Math.max(m,x.id),0)+1;a.push({id});nk=dest+"#"+id}nks.push(nk);S.tabs[nk]=S.tabs[k];delete S.tabs[k];if(S.paid&&S.paid[k]){S.paid[nk]=true;delete S.paid[k]}if(S.splits&&S.splits[k]){S.splits[nk]=S.splits[k];delete S.splits[k]}if(S.tnm&&S.tnm[k]){S.tnm[nk]=S.tnm[k];delete S.tnm[k]}});if(S.tnm)tabKeys(src).forEach(k=>delete S.tnm[k]);if(S.tt)delete S.tt[src];S.since=S.since||{};if(s0)S.since[dest]=wasOpen&&S.since[dest]?Math.min(s0,S.since[dest]):s0;delete S.since[src];sel=dest;ct=nks[0]||String(dest);tm=false})}
+function mvUI(){const l=S.tabs[ct][mv.li];let b=`<p style="margin:0 0 2px;font-weight:600">${esc(l.n)}</p>${detOf(l)?`<small class="det">${esc(detOf(l))}</small>`:''}`;if(l.q>1)b+=`<h4>Move</h4><div class="chips"><button class="${mv.one?'on':''}" onclick="mv.one=true;render()">Just one</button><button class="${mv.one?'':'on'}" onclick="mv.one=false;render()">All ${l.q}</button></div>`;if(mv.tb==null){b+=`<h4>This table</h4><div class="chips">`+tabKeys(sel).filter(k=>k!==ct).map(k=>`<button onclick="doMove('${k}')">${esc(tabName(sel,k))}</button>`).join("")+`<button onclick="doMove('new')">+ New tab</button></div>`;b+=`<h4>Other table</h4><div class="chips">`+Object.keys(L).filter(k=>k!=sel).map(k=>`<button class="${openKeys(k).length?'occ':''}" onclick="mvTb(${k})">${k}</button>`).join("")+`</div><small class="det" style="margin-top:8px">Green tables already have an open tab.</small>`}else{b+=`<h4>Table ${mv.tb}</h4><div class="chips">`+openKeys(mv.tb).map(k=>`<button onclick="doMove('${k}')">${esc(tabName(mv.tb,k))}</button>`).join("")+`<button onclick="doMove('new')">+ New tab</button></div>`}return modal("Move item",b,mv.tb==null?`<button onclick="mv=null;render()">Cancel</button>`:`<button onclick="mv.tb=null;render()">Back</button><button onclick="mv=null;render()">Cancel</button>`)}
+function tmUI(){return modal("Move table "+sel,`<p style="margin:0;color:var(--mut)">Moves every tab at this table. If the new table already has a tab, these join it as extra tabs.</p><h4>Move to</h4><div class="chips">`+Object.keys(L).filter(k=>k!=sel).map(k=>`<button class="${openKeys(k).length?'occ':''}" onclick="doTable(${k})">${k}</button>`).join("")+`</div><small class="det" style="margin-top:8px">Green tables already have an open tab.</small>`,`<button onclick="tm=false;render()">Cancel</button>`)}
+function addLine(n,b,mi,su,k){{const tb=ct.split("#")[0];S.since=S.since||{};if(!(S.since[tb]&&openKeys(tb).length))S.since[tb]=Date.now()}const t=S.tabs[ct]=S.tabs[ct]||[],p=b+xp(mi);const l=t.find(x=>x.n==n&&x.p==p&&(x.mi||"")==mi&&(x.su||"")==su&&(x.k||"")==k);l?l.q++:t.push({n,p,b,q:1,mi,su,k})}
+function add(i){const it=S.menu[i];act("Added "+it.n,()=>{if(S.paid)delete S.paid[ct];addLine(it.n,it.p,"","","")})}
+function editLine(i){const l=S.tabs[ct][i];od={i:null,li:i,one:l.q>1,mi:MILK.findIndex(x=>String(l.mi||"").split(", ").includes(x.n)),ex:EXTRA.map(x=>{for(const e of String(l.mi||"").split(", ")){const r=/^(\d+)× (.+)$/.exec(e);if((r?r[2]:e)==x.n)return r?+r[1]:1}return 0}),su:SUGAR.findIndex(x=>x.n==l.su),k:l.k||""};render()}
+function odEx(j,d){const a=od.ex=od.ex||EXTRA.map(()=>0);a[j]=Math.max(0,Math.min(9,(a[j]||0)+d));render()}
+function odSet(f,j){od[f]=od[f]===j?-1:j;render()}
+function odOk(){act(od.li==null?"Added "+S.menu[od.i].n:"Changed "+S.tabs[ct][od.li].n,odOk0)}
+function odOk0(){const mi=[od.mi>=0?MILK[od.mi].n:"",...EXTRA.map((x,j)=>{const q=(od.ex||[])[j]||0;return q>1?q+"× "+x.n:q?x.n:""})].filter(Boolean).join(", "),su=od.su>=0?SUGAR[od.su].n:"",k=(od.k||"").trim();if(S.paid)delete S.paid[ct];if(od.li==null){const it=S.menu[od.i];addLine(it.n,it.p,mi,su,k)}else{const t=S.tabs[ct],l=t[od.li],b=l.b!=null?l.b:l.p;if(od.one&&l.q>1){l.q--;addLine(l.n,b,mi,su,k)}else{l.b=b;l.mi=mi;l.su=su;l.k=k;l.p=b+xp(mi);const j=t.findIndex((x,q)=>q!=od.li&&x.n==l.n&&x.p==l.p&&(x.mi||"")==mi&&(x.su||"")==su&&(x.k||"")==k);if(j>=0){t[j].q+=l.q;t.splice(od.li,1)}}}od=null;save();render()}
+function odUI(){const it=od.li!=null?S.tabs[ct][od.li]:S.menu[od.i],o=hasOpt(od.li!=null?(S.menu.find(x=>x.n==it.n)||it):it);const ch=(f,arr)=>arr.map((x,j)=>`<button class="${od[f]===j?'on':''}" onclick="odSet('${f}',${j})">${esc(x.n)}${x.p?` +${m(x.p)}`:''}</button>`).join("");return modal(esc(it.n),(o?`<h4>Milk</h4><div class="chips">${ch("mi",MILK)}</div><h4>Sugar</h4><div class="chips">${ch("su",SUGAR)}</div>`:'')+`<h4>Extras</h4>${EXTRA.map((x,j)=>`<div class="row"><span class="n">${esc(x.n)} <small class="det">+${m(x.p)}</small></span><button onclick="odEx(${j},-1)">−</button><b>${(od.ex||[])[j]||0}</b><button onclick="odEx(${j},1)">+</button></div>`).join("")}`+`${od.li!=null&&it.q>1?`<h4>Apply to</h4><div class="chips"><button class="${od.one?'on':''}" onclick="od.one=true;render()">Just one</button><button class="${od.one?'':'on'}" onclick="od.one=false;render()">All ${it.q}</button></div>`:''}<h4>Note</h4><input id="onote" maxlength="40" style="width:100%" placeholder="Other note, e.g. extra hot" value="${esc(od.k||'')}" oninput="od.k=this.value" onkeydown="if(event.key==='Enter')odOk()">${od.li!=null?`<h4>Move</h4><button onclick="openMove()" style="width:100%">Move to another tab or table…</button>`:''}`,`<button onclick="od=null;render()">Cancel</button><button class="p" onclick="odOk()">${od.li!=null?'Save':'Add to order'}</button>`)}
+function chg(i,d){const l=S.tabs[ct][i];act((d<0?(l.q+d<=0?"Removed ":"Removed one "):"Added one ")+l.n,()=>{if(S.paid)delete S.paid[ct];const t=S.tabs[ct];t[i].q+=d;if(t[i].q<=0)t.splice(i,1);if(!t.length)delete S.tabs[ct]})}
+function spl(d){S.splits=S.splits||{};S.splits[ct]=Math.max(1,Math.min(30,(S.splits[ct]||1)+d));save();render()}
+function splitUI(total){const n=(S.splits||{})[ct]||1,c=Math.round(total*100),b=Math.floor(c/n),r=c-b*n;let h=`<div class="row" style="margin-top:8px"><span class="n">Split between</span><button onclick="spl(-1)">−</button><b>${n}</b><button onclick="spl(1)">+</button></div>`;if(n>1){h+=`<div class="tot big" style="font-size:20px"><span>Each pays</span><span>${m(b/100)}</span></div>`;if(r)h+=`<div class="tot"><span>${r} ${r>1?'people pay':'person pays'} ${m((b+1)/100)} so it adds up</span></div>`}h+=`<button onclick="piOpen()" style="width:100%;margin-top:12px">Pay by item instead…</button>`;return h}
+const modal=(t,b,x)=>`<div class="ov" onclick="if(event.target===this){pn=null;cf=false;cc=false;rn=false;od=null;mv=null;tm=false;pi=null;render()}"><div class="dlg" role="dialog" aria-modal="true"><h3>${t}</h3>${b}<div class="act">${x}</div></div></div>`;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&(cf||cc||rn||od||mv||tm||pi||pn)){pn=null;cf=false;cc=false;rn=false;od=null;mv=null;tm=false;pi=null;render()}});
+let cf=false,cc=false,rn=false,od=null;function askCloseTab(v){cc=v;render()}function askClose(v){cf=v;render()}function payTab(){toast=null;cf=false;S.paid=S.paid||{};S.paid[ct]=true;save();render()}
+function closeTab(){if(!(S.paid||{})[ct])return;toast=null;cf=false;cc=false;{const ls=S.tabs[ct]||[],sb=sub(ct),tx=sb*S.tax/100;(S.log=S.log||[]).push({t:Date.now(),w:(window.curW?curW():""),tb:sel,nm:tabKeys(sel).length>1?tabName(sel,ct):"",sb,tx,tt:sb+tx,l:ls.map(x=>({n:x.n,p:x.p,q:x.q,mi:x.mi||"",su:x.su||"",k:x.k||"",c:(S.menu.find(i=>i.n==x.n)||{}).c||""}))})}delete S.paid[ct];delete S.tabs[ct];if(S.splits)delete S.splits[ct];if(ct!==String(sel)){S.tt[sel]=S.tt[sel].filter(x=>sel+"#"+x.id!==ct);if(S.tnm)delete S.tnm[ct]}const r=openKeys(sel);if(r.length){ct=r[0];save();render()}else{if(S.since)delete S.since[sel];if(S.tnm)tabKeys(sel).forEach(k=>delete S.tnm[k]);if(S.tt)delete S.tt[sel];save();go("tables")}}
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+function dayLog(){const d0=new Date();d0.setHours(0,0,0,0);d0.setDate(d0.getDate()+rd);const d1=new Date(d0);d1.setDate(d1.getDate()+1);return{d0,ls:(S.log||[]).filter(x=>x.t>=+d0&&x.t<+d1)}}
+function csvOf(a){const q=v=>'"'+String(v).replace(/"/g,'""')+'"';const r=[["Date","Time","Table","Tab","Item","Category","Qty","Unit price","Line total","Milk / Extras","Sugar","Note"]];a.forEach(x=>{const d=new Date(x.t);x.l.forEach(y=>r.push([ymd(d),d.toTimeString().slice(0,5),x.tb,x.nm||"",y.n,y.c||"",y.q,y.p.toFixed(2),(y.p*y.q).toFixed(2),y.mi||"",y.su||"",y.k||""]))});return r.map(z=>z.map(q).join(",")).join("\r\n")}
+function dl(n,t,ty){try{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:ty}));a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);msg="Download started: "+n+". If nothing downloads, use Copy instead."}catch(e){msg="Couldn't download here. Use Copy instead."}render()}
+function cpy(t,ok){const f=()=>{msg="Couldn't copy here. Use Download instead.";render()};try{navigator.clipboard.writeText(t).then(()=>{msg=ok;render()},f)}catch(e){f()}}
+function csvDl(all){const d=dayLog();dl(all?"cafetabs-sales-all.csv":"cafetabs-sales-"+ymd(d.d0)+".csv","\ufeff"+csvOf(all?(S.log||[]):d.ls),"text/csv")}
+function csvCp(){cpy(csvOf(dayLog().ls),"Sales copied. Paste them into a spreadsheet.")}
+function bkDl(){dl("cafetabs-backup-"+ymd(new Date())+".json",JSON.stringify(S),"application/json")}
+function bkCp(){cpy(JSON.stringify(S),"Backup copied. Paste it somewhere safe.")}
+function rdFile(i){const f=i.files&&i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{rtxt=String(r.result);rsOk=false;msg="File loaded. Tap Restore backup to apply it.";render()};r.readAsText(f)}
+function bkRs(){let x;const bad=()=>{msg="That doesn't look like a Cafe Tabs backup.";render()};try{x=JSON.parse(rtxt)}catch(e){return bad()}if(!x||!Array.isArray(x.menu)||!x.tabs||typeof x.tabs!=="object")return bad();if(!rsOk){rsOk=true;msg="This replaces everything in this app. Tap Restore backup again to continue.";render();return}S=x;S.tax=+S.tax||0;S.cur=S.cur||"€";rtxt="";rsOk=false;cat=0;save();msg="Backup restored.";render()}
+function clrLog(){if(!clOk){clOk=true;msg="Tap Clear history again to delete all saved sales. This can't be undone.";render();return}S.log=[];clOk=false;save();msg="Sales history cleared.";render()}
+function addTab(){toast=null;S.tt=S.tt||{};const a=S.tt[sel]=S.tt[sel]||[];const id=a.reduce((m,x)=>Math.max(m,x.id),0)+1;a.push({id});ct=sel+"#"+id;cf=false;cc=false;save();render()}
+function swTab(k){ct=k;cf=false;cc=false;render()}
+function renTab(){rn=true;cf=false;cc=false;render();setTimeout(()=>{const i=$("rni");if(i){i.focus();i.select()}},30)}
+function saveRen(){toast=null;const n=$("rni").value.trim();S.tnm=S.tnm||{};if(n)S.tnm[ct]=n.slice(0,20);else delete S.tnm[ct];rn=false;save();render()}
+function delTab(){if(S.tabs[ct]||ct===String(sel))return;toast=null;S.tt[sel]=S.tt[sel].filter(x=>sel+"#"+x.id!==ct);if(S.tnm)delete S.tnm[ct];ct=String(sel);save();render()}
 const D=[["N",50],["E",50],["S",50],["W",50]],NS=[["N",50],["S",50]],CH={1:[["S",22],["S",66]],2:[["S",35],["S",67]],3:D,4:D,5:D,6:D,10:D,7:NS,8:NS,9:NS,12:NS,13:NS,14:NS,15:NS,11:[["W",50],["E",50]]};
 const chairs=k=>(CH[k]||[]).map(([d,o])=>`<span class="ch ${d}" style="--o:${o}%"></span>`).join("");
 const L={1:[5.3,10.88,19.27,14.15],2:[28.73,10.88,19.27,14.15],3:[63.67,12.91,6.86,10.35,1],4:[81.99,12.91,6.86,10.35,1],5:[81.99,37.68,6.86,10.35,1],6:[63.67,37.68,6.86,10.35,1],7:[42.01,39.71,6.94,10.35],8:[23.87,39.71,6.86,10.35],9:[6.34,39.71,6.86,10.35],10:[73.57,59.43,6.86,10.35,1],11:[75,79.03,6.86,10.35],12:[92.53,81.78,6.68,10.23],13:[92.53,63.17,6.68,10.35],14:[92.53,33.55,6.68,10.35],15:[92.53,13.23,6.68,10.35]};
-function render(){
+function render0(){
  const a=$("app");
- if(view=="tables"){
-  let h=`<header><h1>Tables</h1><button onclick="go('menu')">Menu & settings</button></header><div class="mw"><div class="map"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M92.19 0V100M67.01 89.38H92.19"/></svg><div class="zone" style="left:0;top:54.92%;width:67.19%;height:45.08%">MEGUSTO</div><div class="plant" aria-hidden="true" style="left:88.8%;top:4.2%"></div><div class="plant" aria-hidden="true" style="left:54.4%;top:22.3%"></div><div class="plant" aria-hidden="true" style="left:90.3%;top:64.2%;--ps:2.8cqw"></div><div class="plant" aria-hidden="true" style="left:90.3%;top:44.6%;--ps:2.6cqw"></div><div class="couch" aria-hidden="true"><i></i><i></i><i></i></div><div class="pil glass" style="left:50.26%;top:0;width:8.77%;height:18.09%"></div><div class="pil" style="left:90.28%;top:46.92%;width:8.85%;height:12.98%">WALL</div>`;
-  for(const k in L){const[x,y,w,hh,d]=L[k],o=S.tabs[k];h+=`<button class="t ${d?'dm':''} ${o?'open':''} ${(S.paid||{})[k]?'paid':''}" style="left:${x}%;top:${y}%;width:${w}%;height:${hh}%;${d?'transform:rotate(45deg)':''}" onclick="go('tab',${k})"><b>${k}</b><small>${o?m(sub(k)*(1+S.tax/100)):''}</small>${chairs(k)}</button>`}
-  h+=`</div></div><footer class="cr">Developed by <b>Dekecy</b></footer>`;a.innerHTML=h;
+ if(view=="tables"&&isPhone()){
+  let h=`<header><h1>Tables</h1><div style="display:flex;gap:8px"><button onclick="gate('report')">Sales</button><button onclick="gate()">Menu & settings</button><button onclick="setLang()" aria-label="Language">${S.lang==="el"?"EN":"ΕΛ"}</button></div></header><div class="grid">`;
+  for(const k in L){const ok=openKeys(k),o=ok.length,pd=o&&ok.every(x=>(S.paid||{})[x]),sn=o?(S.since||{})[k]:0,mn=sn?Math.floor((Date.now()-sn)/60000):-1,wn=S.warn==null?60:S.warn,late=wn>0&&mn>=wn;
+   h+=`<button class="t ${o?'open':''} ${pd?'paid':''} ${late?'late':''}" onclick="go('tab',${k})"><b>${k}</b><small>${o?m(ok.reduce((a,x)=>a+sub(x),0)*(1+S.tax/100)):''}</small>${mn>=0?`<small class="el">${ago(sn)}</small>`:''}</button>`}
+  h+=`</div><footer class="cr">Developed by <b>Dekecy</b></footer>`;if(pn)h+=pnUI();a.innerHTML=h;
+ }else if(view=="tables"){
+  let h=`<header><h1>Tables</h1><div style="display:flex;gap:8px"><button onclick="gate('report')">Sales</button><button onclick="gate()">Menu & settings</button><button onclick="setLang()" aria-label="Language">${S.lang==="el"?"EN":"ΕΛ"}</button></div></header><div class="mw"><div class="map"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M92.19 0V100M67.01 89.38H92.19"/></svg><div class="zone" style="left:0;top:54.92%;width:67.19%;height:45.08%">MEGUSTO</div><div class="plant" aria-hidden="true" style="left:88.8%;top:4.2%"></div><div class="plant" aria-hidden="true" style="left:54.4%;top:22.3%"></div><div class="plant" aria-hidden="true" style="left:90.3%;top:64.2%;--ps:2.8cqw"></div><div class="plant" aria-hidden="true" style="left:90.3%;top:44.6%;--ps:2.6cqw"></div><div class="couch" aria-hidden="true"><i></i><i></i><i></i></div><div class="pil glass" style="left:50.26%;top:0;width:8.77%;height:18.09%"></div><div class="pil" style="left:90.28%;top:46.92%;width:8.85%;height:12.98%">WALL</div>`;
+  for(const k in L){const[x,y,w,hh,d]=L[k],ok=openKeys(k),o=ok.length,pd=o&&ok.every(x=>(S.paid||{})[x]),sn=o?(S.since||{})[k]:0,mn=sn?Math.floor((Date.now()-sn)/60000):-1,wn=S.warn==null?60:S.warn,late=wn>0&&mn>=wn;h+=`<button class="t ${d?'dm':''} ${o?'open':''} ${pd?'paid':''} ${late?'late':''}" style="left:${x}%;top:${y}%;width:${w}%;height:${hh}%;${d?'transform:rotate(45deg)':''}" onclick="go('tab',${k})"><b>${k}</b><small>${o?m(ok.reduce((a,x)=>a+sub(x),0)*(1+S.tax/100)):''}</small>${mn>=0?`<small class="el">${ago(sn)}</small>`:''}${chairs(k)}</button>`}
+  h+=`</div></div><footer class="cr">Developed by <b>Dekecy</b></footer>`;if(pn)h+=pnUI();a.innerHTML=h;
  }else if(view=="tab"){
-  const t=S.tabs[sel]||[],s=sub(sel),tx=s*S.tax/100;
-  const cats=[...new Set(S.menu.map(i=>i.c||"Other"))];
+  const t=S.tabs[ct]||[],s=sub(ct),tx=s*S.tax/100;
+  const cats=tabCats();
   if(cat>=cats.length)cat=0;
   const cn=cats[cat];
-  let h=`<header><button onclick="go('tables')">← Tables</button><h1>Table ${sel}</h1></header><div class="ord">`;
+  const ks=tabKeys(sel),lb=ks.length>1?`table ${sel}, ${esc(tabName(sel,ct))}`:`table ${sel}`;
+  let h=`<header><button onclick="go('tables')">← Tables</button><h1>Table ${sel}${(S.since||{})[sel]&&openKeys(sel).length?`<small class="det" style="display:inline;margin-left:8px;font-weight:500">${ago(S.since[sel])}</small>`:''}</h1></header><div class="tabs">`+ks.map(k=>`<button class="${k===ct?'on':''}" onclick="swTab('${k}')">${esc(tabName(sel,k))}${S.tabs[k]?`<small>${m(sub(k))}</small>`:''}</button>`).join("")+`<button onclick="addTab()">+ Tab</button><button onclick="renTab()">Rename</button>${openKeys(sel).length?`<button onclick="tm=true;render()">Move table</button>`:''}${ct!==String(sel)&&!S.tabs[ct]?`<button class="d" onclick="delTab()">Remove</button>`:''}</div><div class="ord">`;
   if(!t.length)h+=`<p style="color:var(--mut);margin:10px 0">Nothing yet. Pick a category and tap an item.</p>`;
-  t.forEach((l,i)=>h+=`<div class="row"><span class="n">${esc(l.n)}</span><button onclick="chg(${i},-1)">−</button><b>${l.q}</b><button onclick="chg(${i},1)">+</button><span style="width:70px;text-align:right">${m(l.p*l.q)}</span></div>`);
+  t.forEach((l,i)=>h+=`<div class="row"><span class="n" onclick="editLine(${i})" style="cursor:pointer">${esc(l.n)} <i class="pen">✎</i>${detOf(l)?`<small class="det">${esc(detOf(l))}</small>`:''}</span><button onclick="chg(${i},-1)">−</button><b>${l.q}</b><button onclick="chg(${i},1)">+</button><span style="width:70px;text-align:right">${m(l.p*l.q)}</span></div>`);
   h+=`</div>`;
   if(t.length){
    if(S.tax)h+=`<div class="tot"><span>Subtotal</span><span>${m(s)}</span></div><div class="tot"><span>Tax ${S.tax}%</span><span>${m(tx)}</span></div>`;
    
   }
-  h+=`<div class="pos"><div class="cats">`+cats.map((c,i)=>`<button class="${i==cat?'on':''}" onclick="cat=${i};render()">${esc(c)}</button>`).join("")+`</div><div class="items">`;
-  S.menu.forEach((it,i)=>{const c=it.c||"Other";if(c==cn)h+=`<button class="${ck(c)}" onclick="add(${i})">${esc(it.n)}<small>${m(it.p)}</small></button>`});
+  h+=`<input id="sq" type="search" placeholder="Search menu…" value="${esc(qs)}" oninput="qs=this.value;const g=document.querySelector('.items');if(g){g.innerHTML=itemsHTML();tr(g)}" style="width:100%;margin-top:12px"><div class="pos"><div class="cats">`+cats.map((c,i)=>`<button class="${i==cat&&!qs?'on':''}" onclick="cat=${i};qs='';render()">${esc(c)}</button>`).join("")+`</div><div class="items">`;
+  h+=itemsHTML();
   h+=`</div></div>`;
-  if(t.length){const pd=(S.paid||{})[sel],bad='style="background:var(--bad);border-color:var(--bad)"';
-   h+=`<div class="fbar"><span><small>${pd?'Paid':'Total'}</small><br><b style="font-size:22px">${m(s+tx)}</b></span>${pd?`<button class="p" ${bad} onclick="askCloseTab(true)">Close table</button>`:`<button class="p" onclick="askClose(true)">Paid</button>`}</div>`;
-   if(cf&&!pd)h+=modal(`Mark table ${sel} as paid?`,(S.tax?`<div class="tot"><span>Subtotal</span><span>${m(s)}</span></div><div class="tot"><span>Tax ${S.tax}%</span><span>${m(tx)}</span></div>`:'')+`<div class="tot big"><span>Total</span><span>${m(s+tx)}</span></div>`+splitUI(s+tx),`<button onclick="askClose(false)">Cancel</button><button class="p" onclick="payTab()">Yes, paid</button>`);
-   if(cc&&pd)h+=modal(`Close table ${sel}?`,`<p style="color:var(--mut);margin:4px 0 0">This clears the tab for table ${sel}.</p>`,`<button onclick="askCloseTab(false)">Cancel</button><button class="p" ${bad} onclick="closeTab()">Yes, close</button>`)}
+  if(od)h+=odUI();if(pi)h+=piUI();if(mv)h+=mvUI();if(tm)h+=tmUI();if(rn)h+=modal(`Rename tab`,`<input id="rni" maxlength="20" style="width:100%" value="${esc((S.tnm||{})[ct]||'')}" placeholder="${esc(tabName(sel,ct))}" onkeydown="if(event.key==='Enter')saveRen()">`,`<button onclick="rn=false;render()">Cancel</button><button class="p" onclick="saveRen()">Save</button>`);
+  if(t.length){const pd=(S.paid||{})[ct],bad='style="background:var(--bad);border-color:var(--bad)"';
+   h+=`<div class="fbar"><span><small>${pd?'Paid':'Total'}</small><br><b style="font-size:22px">${m(s+tx)}</b>${openKeys(sel).length>1?`<br><small>Table total ${m(openKeys(sel).reduce((a,x)=>a+sub(x),0)*(1+S.tax/100))}</small>`:''}</span>${pd?`<button class="p" ${bad} onclick="askCloseTab(true)">Close table</button>`:`<button class="p" onclick="askClose(true)">Paid</button>`}</div>`;
+   if(cf&&!pd)h+=modal(`Mark ${lb} as paid?`,(S.tax?`<div class="tot"><span>Subtotal</span><span>${m(s)}</span></div><div class="tot"><span>Tax ${S.tax}%</span><span>${m(tx)}</span></div>`:'')+`<div class="tot big"><span>Total</span><span>${m(s+tx)}</span></div>`+splitUI(s+tx),`<button onclick="askClose(false)">Cancel</button><button class="p" onclick="payTab()">Yes, paid</button>`);
+   if(cc&&pd)h+=modal(`Close ${lb}?`,`<p style="color:var(--mut);margin:4px 0 0">This clears ${lb}.</p>`,`<button onclick="askCloseTab(false)">Cancel</button><button class="p" ${bad} onclick="closeTab()">Yes, close</button>`)}
+  if(toast)h+=`<div id="toast" class="toast" role="status"><span>${esc(toast.t)}</span><button onclick="undo()">Undo</button></div>`;
+  a.innerHTML=h;
+ }else if(view=="report"){
+  const{d0,ls}=dayLog();
+  const tot=ls.reduce((a,x)=>a+x.tt,0),tx=ls.reduce((a,x)=>a+x.tx,0),n=ls.reduce((a,x)=>a+x.l.reduce((b,y)=>b+y.q,0),0);
+  const bc={},bi={};ls.forEach(x=>x.l.forEach(y=>{const c=y.c||"Other";bc[c]=(bc[c]||0)+y.p*y.q;const o=bi[y.n]=bi[y.n]||{q:0,r:0};o.q+=y.q;o.r+=y.p*y.q}));
+  const cs=Object.entries(bc).sort((a,b)=>b[1]-a[1]),ti=Object.entries(bi).sort((a,b)=>b[1].q-a[1].q).slice(0,8);
+  const lbl=rd==0?"Today":rd==-1?"Yesterday":d0.toLocaleDateString(S.lang==="el"?"el-GR":undefined,{weekday:"long",day:"numeric",month:"short"});
+  let h=`<header><button onclick="go('tables')">← Tables</button><h1>Sales</h1></header>`+note()+`<div class="row" style="border-bottom:0"><button onclick="rd--;render()" aria-label="Previous day">‹</button><b style="flex:1;text-align:center;font-size:17px">${lbl}</b><button onclick="rd++;render()" aria-label="Next day" ${rd>=0?'disabled':''}>›</button></div>`;
+  if(!ls.length)h+=`<div class="ord full"><p style="color:var(--mut);margin:12px 0">No sales on this day. A payment shows up here once a tab is paid and closed, or paid by item.</p></div>`;
+  else{
+   h+=`<div class="ord full"><div class="tot big"><span>Total sales</span><span>${m(tot)}</span></div><div class="tot"><span>Payments</span><span>${ls.length}</span></div><div class="tot"><span>Items sold</span><span>${n}</span></div>${tx?`<div class="tot"><span>Tax included</span><span>${m(tx)}</span></div>`:''}</div>`;
+   h+=`<h2>By category${tx?' (before tax)':''}</h2><div class="ord full">`+cs.map(([c,v])=>`<div class="row"><span class="n">${esc(c)}</span><span>${m(v)}</span></div>`).join("")+`</div>`;
+   h+=`<h2>Top items</h2><div class="ord full">`+ti.map(([k,o])=>`<div class="row"><span class="n">${o.q}× ${esc(k)}</span><span>${m(o.r)}</span></div>`).join("")+`</div>`;
+   h+=`<h2>Payments</h2><div class="ord full">`+ls.slice().reverse().map(x=>`<div class="row"><span class="n"><b style="text-align:left">${new Date(x.t).toTimeString().slice(0,5)}</b> Table ${x.tb}${x.nm?`, ${esc(x.nm)}`:''}<br><small style="color:var(--mut)">${x.l.map(y=>y.q+"× "+esc(y.n)+(detOf(y)?" ("+esc(detOf(y))+")":"")).join(", ")}</small></span><span>${m(x.tt)}</span></div>`).join("")+`</div>`;
+  }
+  h+=`<h2>Export</h2><div class="bar" style="margin-top:0"><button onclick="csvDl(0)">Download day (CSV)</button><button onclick="csvCp()">Copy day</button></div><div class="bar" style="margin-top:8px"><button onclick="csvDl(1)">Download all sales (CSV)</button></div>`;
   a.innerHTML=h;
  }else{
-  let h=`<header><button onclick="go('tables')">← Back</button><h1>Menu & settings</h1></header>`;
-  S.menu.forEach((it,i)=>h+=`<div class="ed"><input value="${esc(it.n)}" onchange="S.menu[${i}].n=this.value;save()"><input class="pr" type="number" step="0.01" inputmode="decimal" value="${it.p}" onchange="S.menu[${i}].p=parseFloat(this.value)||0;save()"><button class="d" onclick="S.menu.splice(${i},1);save();render()">✕</button></div>`);
-  h+=`<div class="bar"><button onclick="S.menu.push({n:'New item',p:0});save();render()">+ Add item</button></div>
+  let h=`<header><button onclick="go('tables')">← Back</button><h1>Menu & settings</h1></header>`;h+=note();h+=catUI();h+=`<p style="color:var(--mut);margin:0 0 10px">Tick the box next to a drink to ask for milk and sugar when you add it.</p>`;
+  S.menu.forEach((it,i)=>h+=`<div class="ed"><input value="${esc(it.n)}" onchange="S.menu[${i}].n=this.value;save()"><input class="pr" type="number" step="0.01" inputmode="decimal" value="${it.p}" onchange="S.menu[${i}].p=parseFloat(this.value)||0;save()"><input type="checkbox" ${hasOpt(it)?'checked':''} title="Ask for milk and sugar" aria-label="Ask for milk and sugar" onchange="S.menu[${i}].opt=this.checked;save()"><button class="d" onclick="S.menu.splice(${i},1);save();render()">✕</button><i class="br"></i><select class="cs" onchange="itCat(${i},this.value)">${catOpts(it.c||"Other")}</select><input class="g" placeholder="Greek name" value="${esc(it.g||"")}" onchange="S.menu[${i}].g=this.value.trim();save()"><button class="st" aria-label="Favourite" onclick="S.menu[${i}].f=!S.menu[${i}].f;save();render()">${it.f?"★":"☆"}</button></div>`);
+  h+=`<div class="bar"><button onclick="S.menu.push({n:'New item',p:0,c:S.menu.length?S.menu[S.menu.length-1].c:catList()[0]});save();render()">+ Add item</button></div>
   <h2>Settings</h2>
   
   <div class="ed"><span style="flex:1;align-self:center">Tax %</span><input class="pr" type="number" step="0.1" inputmode="decimal" value="${S.tax}" onchange="S.tax=parseFloat(this.value)||0;save()"></div>
   <div class="ed"><span style="flex:1;align-self:center">Currency symbol</span><input class="pr" value="${esc(S.cur)}" onchange="S.cur=this.value;save()"></div>
-  <div class="bar"><button class="p" onclick="go('tables')">Done</button></div>`;
+  <div class="ed"><span style="flex:1;align-self:center">Highlight tables seated longer than (minutes, 0 = off)</span><input class="pr" type="number" inputmode="numeric" value="${S.warn==null?60:S.warn}" onchange="S.warn=Math.max(0,parseInt(this.value)||0);save()"></div>
+  ${pinUI()}${staffUI()}<h2>Sales history</h2><p style="color:var(--mut);margin:0 0 8px">${(S.log||[]).length} payments saved on this device.</p><div class="bar" style="margin-top:0"><button onclick="go('report')">Open sales</button><button class="d" onclick="clrLog()">Clear history</button></div>
+  <h2>Backup</h2><p style="color:var(--mut);margin:0 0 8px">Your menu, open tabs and sales are stored only in this browser. Keep a backup in case you clear browser data or switch devices.</p><div class="bar" style="margin-top:0"><button onclick="bkDl()">Download backup</button><button onclick="bkCp()">Copy backup</button></div><textarea oninput="rtxt=this.value;rsOk=false" placeholder="Paste a backup here to restore it" style="margin-top:10px">${esc(rtxt)}</textarea><input type="file" accept=".json,application/json" onchange="rdFile(this)" style="width:100%;margin-top:8px"><div class="bar"><button class="d" onclick="bkRs()">Restore backup</button></div>
+  <div class="bar"><button class="p" onclick="go('tables')">Done</button></div>`;if(pn)h+=pnUI();
   a.innerHTML=h;
  }
 }
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+/* categories */
+const catList=()=>{const a=S.cats=S.cats||[];S.menu.forEach(i=>{const c=i.c||"Other";if(!a.includes(c))a.push(c)});return a};
+const catOpts=v=>catList().map(c=>`<option value="${esc(c)}" ${c===v?"selected":""}>${esc(c)}</option>`).join("");
+function itCat(i,v){S.menu[i].c=v;save();render()}
+function catAdd(){const a=catList();let c="New category",n=2;while(a.includes(c))c="New category "+n++;a.push(c);save();render()}
+function catRen(i,v){const a=catList(),o=a[i];v=v.trim().slice(0,24);if(!v||v===o||a.includes(v)){if(v&&v!==o)msg="That category name is already used.";render();return}S.cc=S.cc||{};S.cc[v]=+ck(o).slice(1);S.menu.forEach(it=>{if((it.c||"Other")===o){it.opt=hasOpt(it);it.c=v}});a[i]=v;save();render()}
+function catMv(i,d){const a=catList(),j=i+d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];save();render()}
+function catDel(i){const a=catList();if(S.menu.some(it=>(it.c||"Other")===a[i]))return;a.splice(i,1);save();render()}
+function catUI(){const a=catList();return `<h2>Categories</h2>`+a.map((c,i)=>{const n=S.menu.filter(x=>(x.c||"Other")===c).length;return `<div class="ed"><input value="${esc(c)}" maxlength="24" onchange="catRen(${i},this.value)"><button onclick="catMv(${i},-1)" ${i?"":"disabled"}>↑</button><button onclick="catMv(${i},1)" ${i<a.length-1?"":"disabled"}>↓</button><button class="d" ${n?"disabled":""} onclick="catDel(${i})">✕</button></div>`}).join("")+`<div class="bar" style="margin-top:6px"><button onclick="catAdd()">+ Add category</button></div><h2>Items</h2>`}
+/* PIN lock */
+const H=s=>{let h=5381;for(const c of "cafe|"+s)h=(h*33^c.charCodeAt(0))>>>0;return ""+h};
+if(!S.pinInit){S.pinInit=1;S.pin="3456447736"}
+function gate(d){d=d||"menu";if(!S.pin)return go(d);pn={m:"in",d};render()}
+function pnErr(e){pn.e=e;render()}
+function pnOk(){const a=($("pn1")||{}).value||"",b=($("pn2")||{}).value||"",k=pn.m;
+ if(k==="set"){if(!/^\d{4,8}$/.test(a))return pnErr("PIN must be 4–8 digits");if(a!==b)return pnErr("PINs don't match");S.pin=H(a);pn=null;msg="PIN saved";save();render()}
+ else if(H(a)!==S.pin)pnErr("Wrong PIN");
+ else if(k==="rm"){delete S.pin;pn=null;save();render()}
+ else{const d=pn.d||"menu";pn=null;go(d)}}
+function pnUI(){const k=pn.m,two=k==="set",ip=(id,p,x)=>`<input id="${id}" type="password" inputmode="numeric" autocomplete="off" maxlength="8" style="width:100%;${x}" placeholder="${p}" onkeydown="if(event.key==='Enter')${id==="pn1"&&two?"$('pn2').focus()":"pnOk()"}">`;
+ return modal(k==="in"?"Enter PIN":k==="rm"?"Enter PIN to remove":S.pin?"Change PIN":"Set PIN",ip("pn1",two?"New PIN (4–8 digits)":"PIN","")+(two?ip("pn2","Repeat PIN","margin-top:8px"):"")+(pn.e?`<p style="color:var(--bad);margin:8px 0 0">${pn.e}</p>`:""),`<button onclick="pn=null;render()">Cancel</button><button class="p" onclick="pnOk()">OK</button>`)}
+const pinUI=()=>`<h2>PIN lock</h2><div class="bar" style="margin-top:0">${S.pin?`<button onclick="pn={m:'set'};render()">Change PIN</button><button class="d" onclick="pn={m:'rm'};render()">Remove PIN</button>`:`<button onclick="pn={m:'set'};render()">Set PIN</button>`}</div>`;
+const staffUI=()=>`<h2>Waiter logins</h2>${(S.staff||[]).map(x=>`<div class="bar" style="margin:4px 0;align-items:center"><span style="flex:1">${esc(x.n)}</span><button class="d" onclick="stDel('${x.id}')">Remove</button></div>`).join("")||`<p style="color:var(--mut);margin:0 0 8px">No waiter PINs yet. Once you add one, every device asks for a PIN.</p>`}<div class="bar" style="margin-top:6px;gap:6px"><input id="st_n" maxlength="20" placeholder="Name" style="flex:1;min-width:0"><input id="st_p" type="password" inputmode="numeric" maxlength="8" placeholder="PIN 4–8 digits" style="width:130px"><button class="p" onclick="stAdd()">Add</button></div>`;
+function stAdd(){const n=(($("st_n")||{}).value||"").trim().slice(0,20),p=($("st_p")||{}).value||"";if(!n){msg="Enter a name";return render()}if(!/^\d{4,8}$/.test(p)){msg="PIN must be 4–8 digits";return render()}const h=H(p);if((S.staff||[]).some(x=>x.h===h)||S.pin===h){msg="That PIN is already used";return render()}if(window.loginAs&&!curW())loginAs({m:1,n:"Manager"});(S.staff=S.staff||[]).push({id:Date.now().toString(36),n,h});msg=n+" added";save();render()}
+function stDel(id){S.staff=(S.staff||[]).filter(x=>x.id!==id);save();render()}
+/* Greek / English */
+const EX={"Tables":"Τραπέζια","Sales":"Πωλήσεις","Menu & settings":"Μενού & ρυθμίσεις","← Tables":"← Τραπέζια","← Back":"← Πίσω","+ Tab":"+ Λογ.","Rename":"Μετονομασία","Move table":"Μετακίνηση τραπεζιού","Remove":"Διαγραφή","Nothing yet. Pick a category and tap an item.":"Τίποτα ακόμα. Διάλεξε κατηγορία και πάτα ένα προϊόν.","Subtotal":"Υποσύνολο","Paid":"Πληρώθηκε","Total":"Σύνολο","Close table":"Κλείσιμο τραπεζιού","Yes, paid":"Ναι, πληρώθηκε","Yes, close":"Ναι, κλείσιμο","Cancel":"Άκυρο","Undo":"Αναίρεση","Milk":"Γάλα","Search menu…":"Αναζήτηση στο μενού…","★ Favourites":"★ Αγαπημένα","No matches.":"Δεν βρέθηκε τίποτα.","Extras":"Έξτρα","Sugar":"Ζάχαρη","Apply to":"Εφαρμογή σε","Just one":"Μόνο ένα","Note":"Σημείωση","Other note, e.g. extra hot":"Άλλη σημείωση, π.χ. extra ζεστό","Move":"Μετακίνηση","Move to another tab or table…":"Μετακίνηση σε άλλο λογαριασμό ή τραπέζι…","Save":"Αποθήκευση","Add to order":"Προσθήκη στην παραγγελία","Move item":"Μετακίνηση προϊόντος","This table":"Αυτό το τραπέζι","+ New tab":"+ Νέος λογαριασμός","Other table":"Άλλο τραπέζι","Green tables already have an open tab.":"Τα πράσινα τραπέζια έχουν ήδη ανοιχτό λογαριασμό.","Back":"Πίσω","Move to":"Μετακίνηση σε","Split between":"Μοιρασμός σε","Each pays":"Ο καθένας πληρώνει","Pay by item instead…":"Πληρωμή ανά προϊόν…","Pay by item":"Πληρωμή ανά προϊόν","Choose what this person is paying for.":"Διάλεξε τι πληρώνει αυτό το άτομο.","To pay":"Πληρωτέο","Name (optional)":"Όνομα (προαιρετικό)","Select all":"Επιλογή όλων","Clear selection":"Καθαρισμός επιλογής","Pay selected":"Πληρωμή επιλεγμένων","Rename tab":"Μετονομασία λογαριασμού","Today":"Σήμερα","Yesterday":"Χθες","Total sales":"Συνολικές πωλήσεις","Payments":"Πληρωμές","Items sold":"Προϊόντα","Tax included":"Συμπ. ΦΠΑ","By category":"Ανά κατηγορία","By category (before tax)":"Ανά κατηγορία (πριν ΦΠΑ)","Top items":"Κορυφαία προϊόντα","Export":"Εξαγωγή","Download day (CSV)":"Λήψη ημέρας (CSV)","Copy day":"Αντιγραφή ημέρας","Download all sales (CSV)":"Λήψη όλων (CSV)","+ Add item":"+ Προσθήκη προϊόντος","Settings":"Ρυθμίσεις","Tax %":"ΦΠΑ %","Currency symbol":"Σύμβολο νομίσματος","Sales history":"Ιστορικό πωλήσεων","Open sales":"Άνοιγμα πωλήσεων","Clear history":"Καθαρισμός ιστορικού","Backup":"Αντίγραφο ασφαλείας","Download backup":"Λήψη αντιγράφου","Copy backup":"Αντιγραφή αντιγράφου","Restore backup":"Επαναφορά","Done":"Τέλος","Categories":"Κατηγορίες","Items":"Προϊόντα","+ Add category":"+ Νέα κατηγορία","PIN lock":"Κλείδωμα PIN","Set PIN":"Ορισμός PIN","Change PIN":"Αλλαγή PIN","Remove PIN":"Διαγραφή PIN","Enter PIN":"Εισάγετε PIN","Enter PIN to remove":"PIN για διαγραφή","Wrong PIN":"Λάθος PIN","PIN saved":"Το PIN αποθηκεύτηκε","New PIN (4–8 digits)":"Νέο PIN (4–8 ψηφία)","Repeat PIN":"Επανάληψη PIN","PINs don't match":"Τα PIN δεν ταιριάζουν","PIN must be 4–8 digits":"Το PIN θέλει 4–8 ψηφία","Greek name":"Όνομα στα ελληνικά","now":"τώρα"};
+const PAT=[[/^Table total /,"Σύνολο τραπεζιού "],[/^Tax (?=\d)/,"ΦΠΑ "],[/^Mark (.+) as paid\?$/,"Πληρωμή: $1;"],[/^Close (.+)\?$/,"Κλείσιμο: $1;"],[/^This clears (.+)\.$/,"Θα καθαριστεί: $1."],[/^Move table (\d+)$/,"Μετακίνηση τραπεζιού $1"],[/^Added one /,"Προστέθηκε ένα "],[/^Removed one /,"Αφαιρέθηκε ένα "],[/^Added /,"Προστέθηκε "],[/^Removed /,"Αφαιρέθηκε "],[/^Changed /,"Άλλαξε "],[/^Moved (.+?) to /,"Μετακίνηση $1 → "],[/^Paid (\S+) for /,"Πληρώθηκε $1 για "],[/^Paid (?=\S*\d)/,"Πληρώθηκε "],[/^All (\d+)$/,"Όλα $1"],[/^(\d+) payments saved on this device\.$/,"$1 πληρωμές σε αυτή τη συσκευή."],[/\bSugar: /,"Ζάχαρη: "],[/\bTable (?=\d)/g,"Τραπέζι "],[/\btable (?=\d)/g,"τραπέζι "],[/\bTab (?=\d)/g,"Λογ. "]];
+const GRS={"Espresso Bar":"Εσπρέσο","Coffees":"Καφέδες","Matcha Tea":"Ματσά","Beverages":"Ποτά","Milkshakes":"Μιλκσέικ","Smoothies":"Σμούθις","Pastries":"Πίτες","Extra Shot":"Έξτρα Εσπρέσο","Whipped Cream":"Σαντιγί","Oat Milk":"Γάλα Βρώμης","Almond Milk":"Γάλα Αμυγδάλου","No Sugar":"Χωρίς Ζάχαρη","Half Spoon":"Μισό Κουταλάκι","One Sugar":"Μία Ζάχαρη","Medium-Sweet":"Μέτρια-Γλυκιά","Medium":"Μέτρια","Sweet":"Γλυκιά","Very Sweet":"Πολύ Γλυκιά"};
+function tr(r){r=r||$("app");if(S.lang!=="el")return;const M={...GRS};S.menu.forEach(i=>{if(i.g&&i.n)M[i.n]=i.g});
+ const RE=new RegExp(Object.keys(M).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|"),"g");
+ const f=s=>{const t=s.trim();if(EX[t])return s.replace(t,EX[t]);for(const[p,r]of PAT)s=s.replace(p,r);return s.replace(RE,x=>M[x])};
+ const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())if(n.parentNode.nodeName!=="TEXTAREA")n.nodeValue=f(n.nodeValue);
+ r.querySelectorAll("[placeholder]").forEach(e=>{const v=EX[e.placeholder];if(v)e.placeholder=v})}
+const FAV="★ Favourites",nrm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+function tabCats(){const c=catList().filter(c=>S.menu.some(i=>(i.c||"Other")===c));return S.menu.some(i=>i.f)?[FAV,...c]:c}
+function itemsHTML(){const cs=tabCats();if(cat>=cs.length)cat=0;const cn=cs[cat],n=nrm(qs.trim());let h="";S.menu.forEach((it,i)=>{const c=it.c||"Other",ok=n?nrm(it.n+" "+(it.g||"")).includes(n):cn===FAV?it.f:c==cn;if(ok)h+=`<button class="${ck(c)}" onclick="add(${i})">${esc(it.n)}<small>${m(it.p)}</small></button>`});return h||(n?`<p style="color:var(--mut)">No matches.</p>`:"")}
+const isPhone=()=>Math.min(innerWidth,innerHeight)<600;let rz=0;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(view==="tables"&&!pn)render()},200)});
+function setLang(){S.lang=S.lang==="el"?"en":"el";save();render()}
+function render(){render0();tr();if(pn)setTimeout(()=>{const i=$("pn1");if(i&&document.activeElement!==i)i.focus()},30)}
+setInterval(()=>{if(view==="tables"&&!document.hidden&&!pn)render()},30000);
 render();
+</script><script>
+/* Cafe Tabs live sync (shared db). Works offline/local-only when unavailable. */
+(()=>{
+const EX=new Set(["tabs","paid","splits","tt","tnm","since","log","lang"]);
+const tOf=k=>String(k).split("#")[0];
+const canon=v=>{if(Array.isArray(v))return v.map(canon);if(v&&typeof v==="object"){const o={};Object.keys(v).sort().forEach(k=>o[k]=canon(v[k]));return o}return v};
+const cs=v=>JSON.stringify(canon(v));
+const logId=x=>x.t+"_"+String(x.tb==null?0:x.tb).replace(/[^A-Za-z0-9_-]/g,"");
+/* ---- Firebase Realtime Database adapter (free Spark plan, no SDK) ---- */
+const CFGK="cafetabs.sync";
+try{const m=/^#sync=(.+)$/.exec(location.hash);if(m){const c=JSON.parse(atob(decodeURIComponent(m[1])));if(c&&c.url&&c.code)localStorage.setItem(CFGK,JSON.stringify(c));history.replaceState(null,"",location.pathname+location.search)}}catch(e){}
+const rnd=()=>Array.from(crypto.getRandomValues(new Uint8Array(10)),x=>"abcdefghjkmnpqrstuvwxyz23456789"[x%31]).join("");
+function cfgSync(){
+ let cur={};try{cur=JSON.parse(localStorage.getItem(CFGK)||"{}")||{}}catch(e){}
+ const url=prompt("Firebase Database URL (https://…firebaseio.com or …firebasedatabase.app).\nLeave empty to turn sync OFF:",cur.url||"");
+ if(url===null)return;
+ if(!url.trim()){localStorage.removeItem(CFGK);location.reload();return}
+ const code=prompt("Cafe code – the same on every device. Keep it long and private:",cur.code||rnd());
+ if(!code||!code.trim())return;
+ const c={url:url.trim().replace(/\/+$/,""),code:code.trim().replace(/[^A-Za-z0-9_-]/g,"")};
+ localStorage.setItem(CFGK,JSON.stringify(c));
+ const link=location.href.split("#")[0]+"#sync="+encodeURIComponent(btoa(JSON.stringify(c)));
+ prompt("Sync saved. Send this link to each waiter – opening it sets up their phone:",link);
+ location.reload()}
+function makeFB(){
+ let cfg=null;try{cfg=JSON.parse(localStorage.getItem(CFGK)||"null")}catch(e){}
+ if(!cfg||!cfg.url||!cfg.code||typeof EventSource==="undefined")return null;
+ const base=cfg.url.replace(/\/+$/,"")+"/cafes/"+encodeURIComponent(cfg.code);
+ let tree={},loaded=false;const ls=[],pend={};
+ const get=p=>{let n=tree;for(const k of p.split("/")){if(n==null||typeof n!=="object")return undefined;n=n[k]}return n};
+ const setAt=(p,v)=>{const ks=p.split("/").filter(Boolean);if(!ks.length){tree=v==null?{}:v;return}let n=tree;for(let i=0;i<ks.length-1;i++){if(n[ks[i]]==null||typeof n[ks[i]]!=="object")n[ks[i]]={};n=n[ks[i]]}if(v==null)delete n[ks[ks.length-1]];else n[ks[ks.length-1]]=v};
+ const fire=()=>ls.forEach(l=>l.run());
+ const es=new EventSource(base+".json");
+ es.addEventListener("put",e=>{try{const m=JSON.parse(e.data);setAt(m.path,m.data);loaded=true;fire()}catch(x){}});
+ es.addEventListener("patch",e=>{try{const m=JSON.parse(e.data),pre=m.path==="/"?"":m.path;for(const k in m.data)setAt(pre+"/"+k,m.data[k]);loaded=true;fire()}catch(x){}});
+ es.onopen=()=>window.dispatchEvent(new Event("cafesync-open"));
+ es.onerror=()=>ls.forEach(l=>l.err&&l.err({code:"unavailable"}));
+ const w=async(method,p,body)=>{pend[p]=(pend[p]||0)+1;try{const r=await fetch(base+"/"+p+".json",{method,headers:{"Content-Type":"application/json"},body});if(!r.ok)throw new Error("HTTP "+r.status)}finally{pend[p]--;ls.forEach(l=>l.reset&&l.reset(p));fire()}};
+ const snapOf=(id,v,pd)=>({id,exists:v!=null,data:()=>v,metadata:{hasPendingWrites:pd}});
+ return{
+  doc:p=>({set:d=>w("PUT",p,JSON.stringify(d)),delete:()=>w("DELETE",p),
+   onSnapshot(next,err){let last,lpd;const l={err,reset:q=>{if(q===p)last=undefined},run(){if(!loaded)return;const v=get(p),s=JSON.stringify(v===undefined?null:v),pd=(pend[p]||0)>0;if(s===last&&pd===lpd)return;last=s;lpd=pd;next(snapOf(p.split("/").pop(),v,pd))}};ls.push(l);l.run()}}),
+  collection:c=>({onSnapshot(next,err){let prev={},init=true;const l={err,reset:q=>{if(q.startsWith(c+"/"))delete prev[q.slice(c.length+1)]},run(){if(!loaded)return;const raw=get(c)||{},cur={};Object.keys(raw).forEach(k=>{if(raw[k]!=null&&typeof raw[k]==="object")cur[k]=raw[k]});
+    const ch=[];Object.keys(cur).forEach(k=>{const pd=(pend[c+"/"+k]||0)>0;if(!(k in prev))ch.push({type:"added",doc:snapOf(k,cur[k],pd)});else if(JSON.stringify(prev[k])!==JSON.stringify(cur[k]))ch.push({type:"modified",doc:snapOf(k,cur[k],pd)})});
+    Object.keys(prev).forEach(k=>{if(!(k in cur))ch.push({type:"removed",doc:snapOf(k,prev[k],false)})});
+    if(init||ch.length){const first=init;init=false;prev=cur;next({docs:Object.keys(cur).map(k=>snapOf(k,cur[k],false)),docChanges:()=>ch,metadata:{}})}else prev=cur}};ls.push(l);l.run()}})}}
+
+let db=null,canW=true,ready=false,st="connecting",lastCfg=null,pushing=false,again=false,tmr=0,rtm=0;
+const lastT={},known=new Set();
+const dot=document.createElement("div");
+dot.style.cssText="position:fixed;left:8px;bottom:calc(6px + env(safe-area-inset-bottom,0px));font:11px system-ui;padding:2px 8px;border-radius:10px;background:rgba(0,0,0,.55);color:#fff;z-index:50;pointer-events:auto;cursor:pointer;opacity:.85";
+dot.onclick=cfgSync;document.body.appendChild(dot);
+const setSt=s=>{st=s;dot.textContent=s==="on"?"● Live sync":s==="connecting"?"○ Connecting…":s==="readonly"?"● Sync (view only)":s==="error"?"● Sync error – retrying":"○ Tap to set up sync";dot.style.background=s==="on"?"rgba(46,125,79,.85)":s==="error"?"rgba(194,59,46,.85)":"rgba(0,0,0,.55)"};
+setSt("connecting");
+const cfgOf=()=>{const o={};Object.keys(S).forEach(k=>{if(!EX.has(k))o[k]=S[k]});return o};
+const slice=t=>{const o={tabs:{},paid:{},splits:{},tnm:{},since:{}};let n=0;
+ ["tabs","paid","splits","tnm","since"].forEach(f=>{const m=S[f]||{};Object.keys(m).forEach(k=>{if(tOf(k)===String(t)){o[f][k]=m[k];n++}})});
+ const tt=(S.tt||{})[t];if(tt&&tt.length){o.tt=tt;n++}
+ return n?o:null};
+const allT=()=>{const s=new Set(Object.keys(lastT));["tabs","paid","splits","tnm","since","tt"].forEach(f=>Object.keys(S[f]||{}).forEach(k=>s.add(tOf(k))));return s};
+const clearT=t=>{["tabs","paid","splits","tnm","since"].forEach(f=>{const m=S[f];if(m)Object.keys(m).forEach(k=>{if(tOf(k)===String(t))delete m[k]})});if(S.tt)delete S.tt[t]};
+const local=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const fix=()=>{try{if(sel!=null&&!tabKeys(sel).includes(ct))ct=String(sel)}catch(e){}};
+const softRender=()=>{clearTimeout(rtm);rtm=setTimeout(function f(){const a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)){rtm=setTimeout(f,1500);return}fix();try{render()}catch(e){}},120)};
+async function push(){
+ if(!db||!ready||!canW)return;
+ if(pushing){again=true;return}
+ pushing=true;
+ try{
+  do{again=false;
+   const c=cs(cfgOf());
+   if(c!==lastCfg){const p=lastCfg;lastCfg=c;try{await db.doc("cafe/config").set({d:c})}catch(e){lastCfg=p;throw e}}
+   for(const t of allT()){
+    const s=slice(t);
+    if(!s){if(lastT[t]!==undefined){const p=lastT[t];delete lastT[t];try{await db.doc("tables/"+t).delete()}catch(e){lastT[t]=p;throw e}}}
+    else{const d=cs(s);if(d!==lastT[t]){const p=lastT[t];lastT[t]=d;try{await db.doc("tables/"+t).set({d})}catch(e){lastT[t]=p;throw e}}}
+   }
+   const cur=new Map((S.log||[]).map(x=>[logId(x),x]));
+   for(const [id,x] of cur){if(!known.has(id)){known.add(id);try{await db.doc("sales/"+id).set({e:JSON.stringify(x)})}catch(e){known.delete(id);throw e}}}
+   for(const id of [...known]){if(!cur.has(id)){known.delete(id);try{await db.doc("sales/"+id).delete()}catch(e){known.add(id);throw e}}}
+  }while(again);
+  if(st==="error")setSt("on");
+ }catch(e){console.warn("sync",e);setSt("error");setTimeout(()=>{if(st==="error")kick()},5000)}
+ finally{pushing=false}
+}
+function kick(){clearTimeout(tmr);tmr=setTimeout(push,350)}
+window.syncKick=kick;
+function applyT(t,d){let s;try{s=JSON.parse(d)}catch(e){return false}
+ clearT(t);
+ ["tabs","paid","splits","tnm","since"].forEach(f=>{if(s[f]&&Object.keys(s[f]).length){S[f]=S[f]||{};Object.assign(S[f],s[f])}});
+ if(s.tt){S.tt=S.tt||{};S.tt[t]=s.tt}
+ lastT[t]=cs(slice(t)||{});return true}
+async function init(){
+ try{
+  db=makeFB();
+  if(!db){
+   if(!(window.claude&&claude.use))return setSt("local");
+   db=await claude.use("db");if(!db)return setSt("local");
+   try{const u=await claude.use("user");if(u&&u.can){const w=await u.can("data.write");if(w===false)canW=false}}catch(e){}
+  }
+  addEventListener("cafesync-open",()=>{if(ready)setSt(canW?"on":"readonly")});
+  let nCfg=false,nT=false,nL=false,remoteCfg=false;
+  const chk=()=>{if(nCfg&&nT&&nL&&!ready){ready=true;window.__syncReady=true;setSt(canW?"on":"readonly");local();softRender();kick()}};
+  db.doc("cafe/config").onSnapshot(snap=>{
+   if(snap.exists){remoteCfg=true;const d=snap.data().d;
+    if(d!==lastCfg){try{const o=JSON.parse(d);Object.keys(S).forEach(k=>{if(!EX.has(k)&&!(k in o))delete S[k]});Object.assign(S,o);lastCfg=cs(cfgOf());if(ready){local();softRender()}}catch(e){}}}
+   nCfg=true;chk()},e=>setSt("error"));
+  db.collection("tables").onSnapshot(snap=>{
+   if(!nT){const seen=new Set();
+    snap.docs.forEach(x=>{seen.add(x.id);applyT(x.id,x.data().d)});
+    if(remoteCfg||seen.size){allT().forEach(t=>{if(!seen.has(String(t))&&lastT[t]===undefined){clearT(t)}})}
+    nT=true;chk();return}
+   let ch=false;
+   snap.docChanges().forEach(c=>{const t=c.doc.id;
+    if(c.type==="removed"){if(lastT[t]!==undefined){clearT(t);delete lastT[t];ch=true}}
+    else if(!c.doc.metadata.hasPendingWrites){const d=c.doc.data().d;let same=false;try{same=cs(JSON.parse(d))===lastT[t]}catch(e){}if(!same&&applyT(t,d))ch=true}});
+   if(ch){local();softRender()}},e=>setSt("error"));
+  db.collection("sales").onSnapshot(snap=>{
+   const have=new Map((S.log||[]).map(x=>[logId(x),x]));let ch=false;
+   if(!nL){snap.docs.forEach(x=>{known.add(x.id);if(!have.has(x.id)){try{(S.log=S.log||[]).push(JSON.parse(x.data().e));ch=true}catch(e){}}});
+    S.log&&S.log.sort((a,b)=>a.t-b.t);nL=true;chk();return}
+   snap.docChanges().forEach(c=>{const id=c.doc.id;
+    if(c.type==="removed"){known.delete(id);const i=(S.log||[]).findIndex(x=>logId(x)===id);if(i>=0){S.log.splice(i,1);ch=true}}
+    else if(c.type==="added"&&!have.has(id)){try{(S.log=S.log||[]).push(JSON.parse(c.doc.data().e));known.add(id);ch=true}catch(e){}}});
+   if(ch){S.log.sort((a,b)=>a.t-b.t);local();softRender()}},e=>setSt("error"));
+ }catch(e){console.warn(e);setSt("local")}
+}
+init();
+})();
+</script>
+<script>
+/* PIN login: waiter PINs (synced in S.staff) + manager PIN. Locks after idle. */
+(()=>{
+const SK="cafetabs.sess",IDLE=5*60*1000,t0=Date.now();
+let cur=null,last=Date.now(),bad=0,until=0;
+try{cur=JSON.parse(sessionStorage.getItem(SK)||"null")}catch(e){}
+const sv=()=>{try{cur?sessionStorage.setItem(SK,JSON.stringify(cur)):sessionStorage.removeItem(SK)}catch(e){}};
+window.curW=()=>cur?cur.n:"";
+window.loginAs=o=>{cur=o;sv();check()};
+const staff=()=>S.staff||[];
+const syncOn=()=>{try{return !!localStorage.getItem("cafetabs.sync")}catch(e){return false}};
+const required=()=>staff().length>0||(syncOn()&&!window.__syncReady&&Date.now()-t0<6000);
+const ov=document.createElement("div");
+ov.style.cssText="position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:#fff;color:#2b2118;font:16px system-ui,sans-serif;padding:20px";
+ov.innerHTML='<div style="width:100%;max-width:300px;text-align:center"><h1 style="font-size:24px;margin:0 0 4px;color:#7a4a24">Cafe Tabs</h1><p id="lk_m" style="color:#8a7b6d;margin:0 0 14px">Enter your PIN</p><input id="lk_p" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="PIN" style="width:100%;font-size:22px;text-align:center;padding:12px;border:1px solid #e6dccf;border-radius:12px"><button id="lk_b" style="width:100%;margin-top:10px;padding:12px;border-radius:12px;border:0;background:#7a4a24;color:#fff;font:600 16px system-ui">Unlock</button><p id="lk_e" style="color:#c23b2e;min-height:20px;margin:10px 0 0"></p></div>';
+document.body.appendChild(ov);
+const pill=document.createElement("div");
+pill.style.cssText="position:fixed;right:8px;bottom:calc(6px + env(safe-area-inset-bottom,0px));font:11px system-ui;padding:2px 8px;border-radius:10px;background:rgba(0,0,0,.55);color:#fff;z-index:50;cursor:pointer;display:none";
+pill.onclick=()=>{cur=null;sv();check()};
+document.body.appendChild(pill);
+const $l=id=>document.getElementById(id);
+function check(){
+ if(cur&&!cur.m&&staff().length&&!staff().some(x=>x.id===cur.id)){cur=null;sv()}
+ const show=required()&&!cur;
+ if(show&&ov.style.display!=="flex"){$l("lk_p").value="";$l("lk_e").textContent="";ov.style.display="flex";setTimeout(()=>{try{$l("lk_p").focus()}catch(e){}},50)}
+ else if(!show)ov.style.display="none";
+ const hasS=staff().length>0;
+ $l("lk_p").style.display=$l("lk_b").style.display=hasS?"":"none";
+ $l("lk_m").textContent=hasS?"Enter your PIN":"Connecting…";
+ pill.style.display=cur&&hasS?"block":"none";if(cur)pill.textContent="🔒 Lock · "+cur.n}
+function tryPin(){
+ if(Date.now()<until){$l("lk_e").textContent="Too many tries. Wait a moment.";return}
+ const v=$l("lk_p").value,h=H(v);let u=null;
+ if(S.pin&&h===S.pin)u={m:1,n:"Manager"};else{const x=staff().find(x=>x.h===h);if(x)u={id:x.id,n:x.n}}
+ if(u){bad=0;cur=u;last=Date.now();sv();check()}
+ else{bad++;$l("lk_p").value="";if(bad>=5){bad=0;until=Date.now()+30000;$l("lk_e").textContent="Too many tries. Wait 30 seconds."}else $l("lk_e").textContent="Wrong PIN"}}
+$l("lk_b").onclick=tryPin;
+$l("lk_p").onkeydown=e=>{if(e.key==="Enter")tryPin()};
+["pointerdown","keydown","touchstart"].forEach(ev=>addEventListener(ev,()=>{last=Date.now()},{passive:true,capture:true}));
+setInterval(()=>{if(cur&&staff().length&&Date.now()-last>IDLE){cur=null;sv()}check()},300);
+check();
+})();
 </script></body></html>
